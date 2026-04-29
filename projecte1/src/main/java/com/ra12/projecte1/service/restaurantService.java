@@ -55,7 +55,7 @@ public class restaurantService {
             customLogging.logInfo("restaurantService", "findAll", 
                                 "Obteniendo todos los restaurantes");
             
-            List<restaurantModel> restaurants = (List<restaurantModel>) restaurantRepository.findAll();
+            List<restaurantModel> restaurants = restaurantRepository.findAll();
             
             // Log de exit
             customLogging.logInfo("restaurantService", "findAll", 
@@ -71,15 +71,15 @@ public class restaurantService {
         }
     }
 
-    public Optional<restaurantModel> findById(Long restaurant_id){
+    public restaurantModel findById(Long restaurant_id){
         try {
             // Log de inicio
             customLogging.logInfo("restaurantService", "findById", 
                                 "Buscando restaurante con ID: " + restaurant_id);
             
-            Optional<restaurantModel> result = restaurantRepository.findById(restaurant_id);
+            restaurantModel result = restaurantRepository.findById(restaurant_id);
             
-            if (result.isPresent()) {
+            if (result != null) {
                 customLogging.logInfo("restaurantService", "findById", 
                                     "Restaurante encontrado ID: " + restaurant_id);
             } else {

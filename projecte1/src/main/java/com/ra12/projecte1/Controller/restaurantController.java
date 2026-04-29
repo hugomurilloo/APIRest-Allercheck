@@ -94,11 +94,11 @@ public class restaurantController {
     @GetMapping("/restaurants/{restaurant_id}")
     public ResponseEntity<restaurantResponseDTO> getRestaurantById(@PathVariable Long restaurant_id) {
         try{
-            Optional<restaurantModel> restaurant = restaurantService.findById(restaurant_id);
+            restaurantModel restaurant = restaurantService.findById(restaurant_id);
             
-            if (restaurant.isPresent()) {
+            if (restaurant != null) {
                 // Convertir Model a ResponseDTO
-                restaurantResponseDTO responseDTO = new restaurantResponseDTO(restaurant.get());
+                restaurantResponseDTO responseDTO = new restaurantResponseDTO(restaurant);
                 return ResponseEntity.ok(responseDTO);
             } else {
                 return ResponseEntity.notFound().build();

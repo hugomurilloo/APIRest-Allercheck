@@ -2,18 +2,8 @@ package com.ra12.projecte1.model;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-
-@Entity
 public class restaurantModel {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private String name;
@@ -59,18 +49,9 @@ public class restaurantModel {
         this.rangPreu = rangPreu;
         this.ubicacio = ubicacio;
         this.telefon = telefon;
-    }
-    
-    // Metodos para timestampa
-    @PrePersist
-    protected void onCreate() {
-        dataCreated = LocalDateTime.now();
-        dataUpdated = LocalDateTime.now();
-    }
-    
-    @PreUpdate
-    protected void onUpdate() {
-        dataUpdated = LocalDateTime.now();
+        // Inicialitzar les dates automàticament
+        this.dataCreated = LocalDateTime.now();
+        this.dataUpdated = LocalDateTime.now();
     }
     
     // Getters y Setters
